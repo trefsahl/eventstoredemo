@@ -7,20 +7,20 @@ import java.util.ArrayList;
  */
 public class EventStore {
     private ArrayList<Event> eventStorage;
-    private ArrayList<Projection> listeingProjections;
+    private ArrayList<Projection> listeningProjections;
 
     public EventStore(){
         eventStorage = new ArrayList<>();
-        listeingProjections = new ArrayList<>();
+        listeningProjections = new ArrayList<>();
     }
 
     public  void addListeningProjection(Projection projection) {
-        listeingProjections.add(projection);
+        listeningProjections.add(projection);
     }
 
     public void addEvent(Event incomingEvent) {
         eventStorage.add(incomingEvent);
-        for (Projection projection:listeingProjections) {
+        for (Projection projection: listeningProjections) {
             projection.eventAdded(incomingEvent);
         }
     }
